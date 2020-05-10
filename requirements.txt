@@ -1,34 +1,34 @@
 # https://tecadmin.net/install-django-on-ubuntu/
 
-pip3 install django
-pip3 install djangorestframework
-pip3 install psycopg2-binary
-pip3 install django-pylint
+pip install django
+pip install djangorestframework
+pip install psycopg2-binary
+#pip install django-pylint
 
 
-sudo apt-get install psmisc #Error: That port is already in use.
+#sudo apt-get install psmisc #Error: That port is already in use.
 
 
-https://wiki.postgresql.org/wiki/Apt
-https://support.gitkraken.com/how-to-install/
-https://stackoverflow.com/a/54884976
-Install django and setup env
-https://www.digitalocean.com/community/tutorials/how-to-install-django-and-set-up-a-development-environment-on-ubuntu-16-04
+#https://wiki.postgresql.org/wiki/Apt
+#https://support.gitkraken.com/how-to-install/
+#https://stackoverflow.com/a/54884976
+#Install django and setup env
+#https://www.digitalocean.com/community/tutorials/how-to-install-django-and-set-up-a-#development-environment-on-ubuntu-16-04
 
 
 # Install pgadmin4
-sudo apt-get install curl ca-certificates gnupg
-curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-sudo apt-get update
-sudo apt-get install postgresql-11 pgadmin4
+#sudo apt-get install curl ca-certificates gnupg
+#curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+#sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg #main" > /etc/apt/sources.list.d/pgdg.list'
+#sudo apt-get update
+#sudo apt-get install postgresql-11 pgadmin4
 
 
 # Debian 10 screenshotter
-https://itsfoss.com/flameshot/
+#https://itsfoss.com/flameshot/
 
 # Pgmodeler
 
 
 # Switch inside Datatable
-https://www.gyrocode.com/articles/jquery-datatables-why-click-event-handler-does-not-work/
+#https://www.gyrocode.com/articles/jquery-datatables-why-click-event-handler-does-not-work/
