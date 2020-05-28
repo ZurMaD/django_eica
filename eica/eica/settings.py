@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'eica.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd2k8i57pfhdil8',
-        'USER': 'sfbzsarzfrbdmm',
-        'PASSWORD': '043aad9cd81d9cb31e5087d6fa0b56cb4413b4b072bc48ca03e89dbb670fea66',
+        'NAME': 'd78dtoan5ahq9m',
+        'USER': 'mpvmhghlnbbrcw',
+        'PASSWORD': '7fb5c205b5b5c953d6ee98b696f577289ae45ac936f7fa9846ac235e2500628c',
         'HOST': 'ec2-3-91-139-25.compute-1.amazonaws.com',
         'PORT': '5432',
     },
