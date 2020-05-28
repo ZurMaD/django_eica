@@ -39,6 +39,9 @@ from eica.views import enviar_cocina
 from eica.views import error_404_view
 from eica.views import error_500_view
 
+#Heroku
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
 
@@ -93,4 +96,4 @@ urlpatterns = [
     path('', include('api.urls'))
 
     # API
-]
+]+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

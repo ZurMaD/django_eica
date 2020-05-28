@@ -11,10 +11,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
+from decouple import config
+import django_heroku # Heroku
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -50,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # new
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'eica.urls'
@@ -80,11 +85,11 @@ WSGI_APPLICATION = 'eica.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd5efc61prtdh5e',
-        'USER': 'dmxdloulgkqyqq',
-        'PASSWORD': 'f08d27057f6bbe9d02d50540000fd7d48da862651220087b78ecbca4e2db3a21',
-        'HOST': 'ec2-54-83-1-101.compute-1.amazonaws.com',
-        'PORT': '',
+        'NAME': 'd2k8i57pfhdil8',
+        'USER': 'sfbzsarzfrbdmm',
+        'PASSWORD': '043aad9cd81d9cb31e5087d6fa0b56cb4413b4b072bc48ca03e89dbb670fea66',
+        'HOST': 'ec2-3-91-139-25.compute-1.amazonaws.com',
+        'PORT': '5432',
     },
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -100,6 +105,11 @@ DATABASES = {
     }
 }
 
+# DATABASES={
+#     'default':dj_database_url.config(
+#         default=config('HEROKU_POSTGRESQL_YELLOW_URL'),
+#     )
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -137,9 +147,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 # Contiene el tema de administrador Dashboard llamado AdminLTE
-STATIC_URL = '/AdminLte3/'
+# STATIC_URL = '/AdminLte3/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'AdminLte3'), ]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'AdminLte3'), ]
+
+# For Heroku static files
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/eica/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
 
 
 # print(BASE_DIR)
@@ -149,3 +168,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'AdminLte3'), ]
 
 LOGIN_REDIRECT_URL = '/dashboard'
 LOGOUT_REDIRECT_URL = '/accounts/login'
+
+
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

@@ -1,0 +1,1 @@
+web: gunicorn eica.wsgi --log-file -
