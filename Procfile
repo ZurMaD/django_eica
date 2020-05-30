@@ -1,1 +1,1 @@
-web: gunicorn eica.wsgi --log-file -
+web: gunicorn --chdir eica eica.wsgi:application --log-file -

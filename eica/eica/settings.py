@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import dj_database_url
-from decouple import config
-import django_heroku # Heroku
 
+import dj_database_url
+import django_heroku  # Heroku
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'eica',
     'api',
+    # Heroku
+    #'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # new
+    # Heroku
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
@@ -105,6 +107,10 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+
 # DATABASES={
 #     'default':dj_database_url.config(
 #         default=config('HEROKU_POSTGRESQL_YELLOW_URL'),
@@ -152,7 +158,7 @@ USE_TZ = True
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'AdminLte3'), ]
 
 # For Heroku static files
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/eica/static/'
 STATICFILES_DIRS = [
@@ -170,6 +176,7 @@ LOGIN_REDIRECT_URL = '/dashboard'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 
 
+os.environ["DJANGO_SETTINGS_MODULE"] = "eica.settings"
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
